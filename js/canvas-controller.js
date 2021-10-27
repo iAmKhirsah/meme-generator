@@ -27,7 +27,6 @@ function getCanvas() {
 }
 
 function resizeCanvas(img) {
-  // gElCanvas.width = 600;
   gElCanvas.height = (img.height * gElCanvas.width) / img.width;
 }
 

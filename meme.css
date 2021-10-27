@@ -4,7 +4,7 @@
 /* FONTS */
 @font-face {
   font-family: meme-font;
-  src: url(/font/impact.ttf);
+  src: url(./font/impact.ttf);
 }
 /* MAIN NAV */
 .main-nav {
