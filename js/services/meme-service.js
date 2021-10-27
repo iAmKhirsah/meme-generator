@@ -1,5 +1,6 @@
 'use strict';
 var gKeywords = { happy: 6, trump: 2, dog: 3, child: 5, hands: 5 };
+var gMeme;
 
 function imagesForMemes() {
   var imgs = [
@@ -34,4 +35,23 @@ function imagesForMemes() {
     { id: 125, url: './img/025.jpg', keywords: ['everywhere'] },
   ];
   return imgs;
+}
+
+function currMeme(img) {
+  gMeme = {
+    selectedImgId: img.id,
+    selectedLineIdx: 0,
+    lines: [
+      {
+        txt: 'I never eat Falafel',
+        size: 40,
+        align: 'left',
+        color: 'white',
+      },
+    ],
+  };
+}
+
+function getMeme() {
+  return gMeme;
 }

@@ -9,6 +9,8 @@ function initCanvas() {
 function createMeme(img) {
   hidePages();
   resizeCanvas(img);
+  console.log(img);
+  currMeme(img);
   gCtx.drawImage(img, 0, 0, img.width, img.height);
 }
 
@@ -27,4 +29,9 @@ function getCanvas() {
 function resizeCanvas(img) {
   gElCanvas.width = img.width;
   gElCanvas.height = img.height;
+}
+
+function getCanvasPos() {
+  var pos = { x: gElCanvas.width, y: gElCanvas.height };
+  return pos;
 }
