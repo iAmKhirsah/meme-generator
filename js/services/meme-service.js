@@ -38,6 +38,7 @@ function imagesForMemes() {
 }
 
 function currMeme(img) {
+  var pos = getCanvasPos();
   gMeme = {
     selectedImgId: img.id,
     selectedLineIdx: 0,
@@ -45,8 +46,9 @@ function currMeme(img) {
       {
         txt: 'I never eat Falafel',
         size: 40,
-        align: 'left',
+        align: 'center',
         color: 'white',
+        pos: { x: pos.x / 2, y: 60 },
       },
     ],
   };
