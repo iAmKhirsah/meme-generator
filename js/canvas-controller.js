@@ -10,6 +10,7 @@ function createMeme(img) {
   hidePages();
   resizeCanvas(img);
   currMeme(img);
+  inputText();
   gCtx.drawImage(img, 0, 0, img.width, img.height);
 }
 
@@ -28,6 +29,12 @@ function getCanvas() {
 function resizeCanvas(img) {
   gElCanvas.width = img.width;
   gElCanvas.height = img.height;
+}
+
+function inputText() {
+  var meme = getMeme();
+  var input = document.querySelector('.input');
+  input.value = meme.lines[meme.selectedLineIdx].txt;
 }
 
 function getCanvasPos() {

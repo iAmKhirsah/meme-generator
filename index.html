@@ -20,18 +20,24 @@
       <div class="canvas-container">
         <canvas id="my-canvas"></canvas>
       </div>
-      <input
-        type="text"
-        name="text"
-        placeholder="text here"
-        oninput="drawText(value)"
-      />
+      <div class="input-container">
+        <input
+          class="input"
+          type="text"
+          name="text"
+          placeholder="text here"
+          oninput="drawText(value)"
+        />
+        <input type="color" oninput="setColor(value)" />
+      </div>
+      <button onclick="addLine()">add line</button>
       <button onclick="fontSizeChange('+')">size up</button>
       <button onclick="fontSizeChange('-')">size down</button>
       <button onclick="moveText('up')">text up</button>
       <button onclick="moveText('down')">text down</button>
       <button onclick="moveText('left')">text left</button>
       <button onclick="moveText('right')">text right</button>
+      <button onclick="switchLines()">switch line</button>
     </div>
     <script src="/js/services/storage-service.js"></script>
     <script src="/js/services/canvas-service.js"></script>
