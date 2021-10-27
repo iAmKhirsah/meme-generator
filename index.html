@@ -16,11 +16,11 @@
       </div>
     </nav>
     <div class="grid-container grid"></div>
-    <div class="meme-generator hidden">
+    <div class="meme-generator flex hidden">
       <div class="canvas-container">
-        <canvas id="my-canvas"></canvas>
+        <canvas id="my-canvas" width="600"></canvas>
       </div>
-      <div class="input-container">
+      <div class="function-container grid">
         <input
           class="input"
           type="text"
@@ -28,16 +28,16 @@
           placeholder="text here"
           oninput="drawText(value)"
         />
-        <input type="color" oninput="setColor(value)" />
+        <input class="color-picker" type="color" oninput="setColor(value)" />
+        <button class="add-line" onclick="addLine()">add line</button>
+        <button class="font-size-up" onclick="fontSizeChange('+')">➕</button>
+        <button class="font-size-down" onclick="fontSizeChange('-')">➖</button>
+        <button class="text-up" onclick="moveText('up')">⬆</button>
+        <button class="text-down" onclick="moveText('down')">⬇</button>
+        <button class="text-left" onclick="moveText('left')">⬅</button>
+        <button class="text-right" onclick="moveText('right')">➡</button>
+        <button class="switch-line" onclick="switchLines()">⇅</button>
       </div>
-      <button onclick="addLine()">add line</button>
-      <button onclick="fontSizeChange('+')">size up</button>
-      <button onclick="fontSizeChange('-')">size down</button>
-      <button onclick="moveText('up')">text up</button>
-      <button onclick="moveText('down')">text down</button>
-      <button onclick="moveText('left')">text left</button>
-      <button onclick="moveText('right')">text right</button>
-      <button onclick="switchLines()">switch line</button>
     </div>
     <script src="./js/services/storage-service.js"></script>
     <script src="./js/services/canvas-service.js"></script>
