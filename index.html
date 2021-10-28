@@ -5,14 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meme-gen</title>
+
     <link rel="stylesheet" href="meme.css" />
   </head>
   <body onload="init()">
     <nav class="main-nav flex">
-      <h2 class="logo">Meme-gen</h2>
+      <h1 class="logo">Noxus Document Forger™</h1>
       <div class="nav-buttons">
         <button class="gallery-btn" onclick="hidePages(this)">Gallery</button>
         <button onclick="hidePages('memes')">My Memes</button>
+        <button>About</button>
       </div>
     </nav>
     <div class="grid-container grid"></div>
@@ -20,7 +22,7 @@
       <div class="canvas-container flex">
         <canvas id="my-canvas"></canvas>
       </div>
-      <div class="function-container grid">
+      <div>
         <input
           class="input"
           type="text"
@@ -28,44 +30,86 @@
           placeholder="text here"
           oninput="changeText(value)"
         />
-        <input class="color-picker" type="color" oninput="setColor(value)" />
-        <button class="add-line" onclick="addLine()">add line</button>
-        <button class="font-size-up" onclick="fontSizeChange('+')">➕</button>
-        <button class="font-size-down" onclick="fontSizeChange('-')">➖</button>
-        <button class="text-up" onclick="moveText('up')">⬆</button>
-        <button class="text-down" onclick="moveText('down')">⬇</button>
-        <button class="text-left" onclick="moveText('left')">⬅</button>
-        <button class="text-right" onclick="moveText('right')">➡</button>
-        <button class="switch-line" onclick="switchLines()">⇅</button>
-        <button class="download-btn">
-          <a href="#" download="my-meme.jpg" onclick="downloadMeme(this)"
-            >Download</a
+        <div class="function-container grid">
+          <button class="center-all">
+            <input
+              class="color-picker"
+              type="color"
+              oninput="setColor(value)"
+            /><i class="fas fa-palette"></i>
+          </button>
+          <button class="add-line" onclick="addLine()">
+            <i class="fas fa-plus-square"></i>
+          </button>
+          <button class="font-size-up" onclick="fontSizeChange('+')">
+            <i class="fas fa-text-height"></i><i class="fas fa-plus"></i>
+          </button>
+          <button class="font-size-down" onclick="fontSizeChange('-')">
+            <i class="fas fa-text-height"></i><i class="fas fa-minus"></i>
+          </button>
+          <button class="text-up" onclick="moveText('up')">
+            <i class="fas fa-arrow-up"></i>
+          </button>
+          <button class="text-down" onclick="moveText('down')">
+            <i class="fas fa-arrow-down"></i>
+          </button>
+          <button class="text-left" onclick="moveText('left')">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <button class="text-right" onclick="moveText('right')">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+          <button class="switch-line" onclick="switchLines()">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+          <button class="stroke-btn center-all">
+            <input
+              class="stroke"
+              type="color"
+              oninput="setStrokeColor(value)"
+            /><i class="fas fa-paint-brush"></i>
+          </button>
+          <button class="text-align-left" onclick="setTextAlignment('left')">
+            <i class="fas fa-align-left"></i>
+          </button>
+          <button
+            class="text-align-center"
+            onclick="setTextAlignment('center')"
           >
-        </button>
-        <button class="stroke">
-          <input type="color" oninput="setStrokeColor(value)" />S
-        </button>
-        <button class="text-align-left" onclick="setTextAlignment('left')">
-          text left
-        </button>
-        <button class="text-align-center" onclick="setTextAlignment('center')">
-          text center
-        </button>
-        <button class="text-align-right" onclick="setTextAlignment('right')">
-          text right
-        </button>
-        <button class="delete" onclick="deleteLine()">delete</button>
-        <select name="font" id="font" onclick="changeFont(this.value)">
-          Font
-          <option value="Impact">Impact</option>
-          <option value="Courier New">Courier New</option>
-          <option value="Arial">Arial</option>
-          <option value="serif">Serif</option>
-          <option value="sans-serif">Sans Serif</option>
-        </select>
+            <i class="fas fa-align-center"></i>
+          </button>
+          <button class="text-align-right" onclick="setTextAlignment('right')">
+            <i class="fas fa-align-right"></i>
+          </button>
+          <button class="delete" onclick="deleteLine()"></button>
+          <select
+            class="font-select"
+            name="font"
+            id="font"
+            onclick="changeFont(this.value)"
+          >
+            <option value="Impact">Impact</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Arial">Arial</option>
+            <option value="serif">Serif</option>
+            <option value="sans-serif">Sans Serif</option>
+          </select>
+          <button class="download-btn">
+            <a href="#" download="my-meme.jpg" onclick="downloadMeme(this)"
+              ><i class="fas fa-arrow-circle-down"></i
+            ></a>
+            <button class="share" onclick="shareMeme()">
+              <i class="fas fa-share-alt-square"></i>
+            </button>
+          </button>
+        </div>
       </div>
     </div>
     <div class="meme-container grid"></div>
+    <script
+      src="https://kit.fontawesome.com/84b9566613.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="./js/services/storage-service.js"></script>
     <script src="./js/services/canvas-service.js"></script>
     <script src="./js/services/meme-service.js"></script>

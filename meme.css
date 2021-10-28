@@ -6,26 +6,71 @@
   font-family: meme-font;
   src: url(./font/impact.ttf);
 }
+@font-face {
+  font-family: rubik;
+  src: url(./font/Rubik-Regular.ttf);
+}
+@font-face {
+  font-family: fa;
+  src: url(./font/font-awesome.otf);
+}
+
+/* BASIC */
+body {
+  margin: 0;
+  font-family: rubik;
+}
+
+h1 {
+  font-size: 2rem;
+}
 /* MAIN NAV */
 .main-nav {
-  background-color: crimson;
+  background-image: url(./img/nav.jpg);
+  background-repeat: no-repeat;
+  background-position: 100% 10%;
+  background-size: cover;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid black;
+}
+
+.nav-buttons button {
+  margin-inline-end: 50px;
+  font-size: 30px;
+  font-family: rubik;
+  background-color: transparent;
+  color: white;
+  border: 0;
+  border-right: 4px solid #787878;
+  padding: 20px 20px 20px 0;
+  cursor: pointer;
+}
+.nav-buttons button:last-child {
+  border: none;
+}
+
+.nav-buttons button:hover {
+  color: crimson;
 }
 
 .logo {
-  padding: 50px 0 50px 0;
+  padding: 40px 0 40px 30px;
+  color: white;
+  cursor: auto;
 }
 
 /* MEME GENERATOR */
 .meme-generator {
   border: 5px solid black;
+  padding: 10px;
   width: 100%;
   height: 100%;
 }
 /*GRID CONTAINER */
 .grid-container {
-  margin-top: 20px;
+  background-color: white;
+  padding: 30px 50px;
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   grid-auto-rows: minmax(10px, 1fr);
   gap: 20px;
@@ -35,35 +80,81 @@
   width: 100%;
   grid-column: span 4;
   grid-row: span 4;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.grid-container img:hover {
+  box-shadow: 0px 4px 3px 0px rgba(223, 8, 8, 0.74);
+}
+
+/* FUNCTION GRID CONTAINER */
+input[type='text'] {
+  width: 100%;
 }
 
 /* FUNCTION GRID  */
 .function-container {
-  width: 100%;
+  max-width: 500px;
   grid-template-areas:
-    'add input input input color'
-    '. . a-up . font-up'
-    '. a-left select a-right font-down'
-    '. . a-down . .';
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+    'fill-color add-line . font-picker font-picker'
+    'stroke-color . a-up . font-up'
+    '. a-left select a-right .'
+    'align-left . a-down . delete'
+    'align-center align-right . font-size-down font-size-up'
+    'download download . share share';
+  /* grid-template-columns: repeat(5, 100px); */
+  /* grid-template-rows: repeat(4, 1fr); */
+  gap: 6px;
 }
-.input {
-  grid-area: input;
+.function-container > * {
+  position: relative;
+  width: 50px;
+  height: 50px;
 }
-.color-picker {
+
+.share {
+  grid-area: share;
+  width: 100%;
+}
+.download-btn {
+  grid-area: download;
+  width: 100%;
+}
+.stroke-btn {
+  grid-area: stroke-color;
+}
+.stroke {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  grid-area: color;
+  opacity: 0;
+  text-align: center;
+}
+.delete {
+  grid-area: delete;
+}
+.delete::before {
+  font-family: fa;
+  content: '\f2ed';
+}
+.color-picker {
+  grid-area: fill-color;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  text-align: center;
 }
 .add-line {
-  grid-area: add;
+  grid-area: add-line;
 }
 .font-size-up {
-  grid-area: font-up;
+  grid-area: font-size-up;
 }
 .font-size-down {
-  grid-area: font-down;
+  grid-area: font-size-down;
 }
 .text-up {
   grid-area: a-up;
@@ -80,10 +171,23 @@
 .switch-line {
   grid-area: select;
 }
+.text-align-left {
+  grid-area: align-left;
+}
+.text-align-center {
+  grid-area: align-center;
+}
+.text-align-right {
+  grid-area: align-right;
+}
+.font-select {
+  grid-area: font-picker;
+  width: 100%;
+}
 /* CANVAS */
 .canvas-container {
-  margin: 20px;
-  justify-content: center;
+  /* margin: 20px; */
+  /* justify-content: center; */
   height: 100%;
   width: 100%;
 }
@@ -99,6 +203,12 @@
 
 .hidden {
   display: none;
+}
+.center-all {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 @media (max-width: 740px) {

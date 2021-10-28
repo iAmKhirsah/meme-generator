@@ -48,7 +48,7 @@ function getElCanvas() {
 function aspectRatio() {
   var elContainer = document.querySelector('.canvas-container');
   var img = getImg();
-  gElCanvas.width = elContainer.offsetWidth;
+  gElCanvas.width = elContainer.offsetWidth - 5;
   gElCanvas.height = (img.height * gElCanvas.width) / img.width;
   drawMeme();
 }
