@@ -17,8 +17,8 @@
     </nav>
     <div class="grid-container grid"></div>
     <div class="meme-generator flex hidden">
-      <div class="canvas-container">
-        <canvas id="my-canvas" width="600"></canvas>
+      <div class="canvas-container flex">
+        <canvas id="my-canvas"></canvas>
       </div>
       <div class="function-container grid">
         <input
@@ -26,7 +26,7 @@
           type="text"
           name="text"
           placeholder="text here"
-          oninput="drawText(value)"
+          oninput="changeText(value)"
         />
         <input class="color-picker" type="color" oninput="setColor(value)" />
         <button class="add-line" onclick="addLine()">add line</button>
@@ -42,6 +42,27 @@
             >Download</a
           >
         </button>
+        <button class="stroke">
+          <input type="color" oninput="setStrokeColor(value)" />S
+        </button>
+        <button class="text-align-left" onclick="setTextAlignment('left')">
+          text left
+        </button>
+        <button class="text-align-center" onclick="setTextAlignment('center')">
+          text center
+        </button>
+        <button class="text-align-right" onclick="setTextAlignment('right')">
+          text right
+        </button>
+        <button class="delete" onclick="deleteLine()">delete</button>
+        <select name="font" id="font" onclick="changeFont(this.value)">
+          Font
+          <option value="Impact">Impact</option>
+          <option value="Courier New">Courier New</option>
+          <option value="Arial">Arial</option>
+          <option value="serif">Serif</option>
+          <option value="sans-serif">Sans Serif</option>
+        </select>
       </div>
     </div>
     <div class="meme-container grid"></div>

@@ -19,8 +19,9 @@
 
 /* MEME GENERATOR */
 .meme-generator {
-  margin: 2.5em 5em 2.5em 5em;
   border: 5px solid black;
+  width: 100%;
+  height: 100%;
 }
 /*GRID CONTAINER */
 .grid-container {
@@ -81,8 +82,10 @@
 }
 /* CANVAS */
 .canvas-container {
-  margin: 40px 80px 40px 80px;
+  margin: 20px;
   justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 /* HELPERS */
 
@@ -101,8 +104,5 @@
 @media (max-width: 740px) {
   .meme-generator {
     flex-wrap: wrap;
-  }
-  #my-canvas {
-    width: 398.4px;
   }
 }

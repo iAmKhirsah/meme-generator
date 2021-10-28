@@ -44,10 +44,12 @@ function currMeme(img) {
     selectedLineIdx: 0,
     lines: [
       {
-        txt: 'I never eat Falafel',
+        txt: '',
         size: 40,
         align: 'center',
         color: 'white',
+        strokeColor: 'black',
+        font: 'Impact',
         pos: { x: pos.x / 2, y: 60 },
       },
     ],
