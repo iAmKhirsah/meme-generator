@@ -10,12 +10,41 @@
   </head>
   <body onload="init()">
     <nav class="main-nav flex">
-      <h1 class="logo">Noxus Document Forger™</h1>
-      <div class="nav-buttons">
-        <button class="gallery-btn" onclick="hidePages(this)">Gallery</button>
-        <button onclick="hidePages('memes')">My Memes</button>
-        <button>About</button>
+      <div class="btn-slice">
+        <div class="logo top"><span>Noxus Document Forger™</span></div>
+        <div class="logo bottom"><span>Noxus Document Forger­™</span></div>
       </div>
+      <div class="nav-btns flex">
+        <div class="btn-slice">
+          <div class="logo top" onclick="hidePages(this)">
+            <span>Gallery</span>
+          </div>
+          <div class="logo bottom" onclick="hidePages(this)">
+            <span>Gallery</span>
+          </div>
+        </div>
+        <span class="divider"></span>
+        <div class="btn-slice">
+          <div class="logo top" onclick="hidePages('memes')">
+            <span>My Memes</span>
+          </div>
+          <div class="logo bottom" onclick="hidePages('memes')">
+            <span>My Memes</span>
+          </div>
+        </div>
+        <span class="divider"></span>
+        <div class="btn-slice">
+          <div class="logo top"><span>About</span></div>
+          <div class="logo bottom"><span>About</span></div>
+        </div>
+      </div>
+      <!-- <div class="nav-buttons">
+        <button class="gallery-btn" onclick="hidePages(this)">Gallery</button>
+        <button class="memes-page" onclick="hidePages('memes')">
+          My Memes
+        </button>
+        <button class="about-page">About</button>
+      </div> -->
     </nav>
     <div class="grid-container grid"></div>
     <div class="meme-generator flex hidden">
@@ -102,7 +131,11 @@
             title="Text Align Right"
             onclick="setTextAlignment('right')"
           ></button>
-          <button class="delete" title="Delete Selected Line" onclick="deleteLine()"></button>
+          <button
+            class="delete"
+            title="Delete Selected Line"
+            onclick="deleteLine()"
+          ></button>
           <select
             class="font-select"
             title="Font Select"

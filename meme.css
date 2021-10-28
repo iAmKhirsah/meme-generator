@@ -15,6 +15,8 @@
   src: url(./font/font-awesome.otf);
 }
 
+/* BTN TESTING AREA */
+
 /* BASIC */
 body {
   margin: 0;
@@ -26,6 +28,7 @@ h1 {
 }
 /* MAIN NAV */
 .main-nav {
+  height: 15vh;
   background-image: url(./img/nav.jpg);
   background-repeat: no-repeat;
   background-position: 100% 10%;
@@ -45,6 +48,7 @@ h1 {
   border-right: 4px solid #787878;
   padding: 20px 20px 20px 0;
   cursor: pointer;
+  transition: transform 1s;
 }
 .nav-buttons button:last-child {
   border: none;
@@ -52,14 +56,85 @@ h1 {
 
 .nav-buttons button:hover {
   color: crimson;
-  transition: color 1s;
-  /* background-color: black; */
 }
 
 .logo {
-  padding: 40px 0 40px 30px;
+  /* padding: 40px 0 40px 30px; */
   color: white;
   cursor: auto;
+}
+
+/* MAIN NAV BTNS */
+.btn-slice {
+  padding: 1.2rem 1rem;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.3rem;
+  position: relative;
+  transition: all 1000ms cubic-bezier(0.89, -0.17, 0.14, 1.225);
+  transition-timing-function: cubic-bezier(0.89, -0.17, 0.14, 1.225);
+}
+.btn-slice .top {
+  line-height: 1rem;
+  position: relative;
+  height: 25px;
+  overflow: hidden;
+  top: 12.7px;
+  transition: all 300ms cubic-bezier(1, -0.055, 0.025, 1.04);
+  transition-timing-function: cubic-bezier(1, -0.055, 0.025, 1.04);
+  transition-delay: 0.35s;
+}
+.btn-slice .bottom {
+  position: relative;
+  line-height: 1.75rem;
+  height: 20px;
+  overflow: hidden;
+  bottom: 12px;
+  transition: all 300ms cubic-bezier(1, -0.055, 0.025, 1.04);
+  transition-timing-function: cubic-bezier(1, -0.055, 0.025, 1.04);
+  transition-delay: 0.35s;
+}
+.nav-btns span:hover {
+  cursor: pointer;
+}
+.btn-slice .bottom span {
+  top: -6px;
+  position: absolute;
+  left: 0px;
+}
+.btn-slice:hover .top {
+  top: -5px;
+  transition-delay: 0.35s;
+}
+.btn-slice:hover .bottom {
+  bottom: -5px;
+  transition-delay: 0.35s;
+}
+.btn-slice:hover,
+.btn-slice:focus,
+.btn-slice:active {
+  margin-left: 10px;
+}
+.btn-slice:before {
+  content: '';
+  height: 1px;
+  background-color: rgb(152 158 160);
+  position: absolute;
+  margin-top: 20px;
+  width: 0.01px;
+  right: 0;
+  transition: all 1000ms cubic-bezier(0.89, -0.17, 0.14, 1.225);
+  transition-timing-function: cubic-bezier(0.89, -0.17, 0.14, 1.225);
+}
+.btn-slice:hover:before {
+  width: 100%;
+}
+
+.divider {
+  width: 5px;
+  background-color: rgb(174 27 55 / 81%);
+  border: 0;
 }
 
 /* MEME GENERATOR */
