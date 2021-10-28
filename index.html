@@ -11,8 +11,8 @@
     <nav class="main-nav flex">
       <h2 class="logo">Meme-gen</h2>
       <div class="nav-buttons">
-        <button>Gallery</button>
-        <button>My Memes</button>
+        <button class="gallery-btn" onclick="hidePages(this)">Gallery</button>
+        <button onclick="hidePages('memes')">My Memes</button>
       </div>
     </nav>
     <div class="grid-container grid"></div>
@@ -37,8 +37,14 @@
         <button class="text-left" onclick="moveText('left')">⬅</button>
         <button class="text-right" onclick="moveText('right')">➡</button>
         <button class="switch-line" onclick="switchLines()">⇅</button>
+        <button class="download-btn">
+          <a href="#" download="my-meme.jpg" onclick="downloadMeme(this)"
+            >Download</a
+          >
+        </button>
       </div>
     </div>
+    <div class="meme-container grid"></div>
     <script src="./js/services/storage-service.js"></script>
     <script src="./js/services/canvas-service.js"></script>
     <script src="./js/services/meme-service.js"></script>

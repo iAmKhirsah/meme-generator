@@ -19,7 +19,7 @@
 
 /* MEME GENERATOR */
 .meme-generator {
-  margin: 40px 80px 40px 80px;
+  margin: 2.5em 5em 2.5em 5em;
   border: 5px solid black;
 }
 /*GRID CONTAINER */
@@ -39,7 +39,6 @@
 /* FUNCTION GRID  */
 .function-container {
   width: 100%;
-  margin: 40px 80px 40px 80px;
   grid-template-areas:
     'add input input input color'
     '. . a-up . font-up'

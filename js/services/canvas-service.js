@@ -6,27 +6,6 @@ function drawMeme() {
   drawMemeImg(meme.selectedImgId);
 }
 
-function drawMemeImg(id) {
-  var img = document.getElementById(`${id}`);
-  gCtx.drawImage(img, 0, 0, img.width, img.height);
-}
-
-function drawText(text = '') {
-  drawMeme();
-  var meme = getMeme();
-  gCtx.lineWidth = 2;
-  if (text === '') text = meme.lines[meme.selectedLineIdx].txt;
-  else meme.lines[meme.selectedLineIdx].txt = text;
-  meme.lines.forEach((entry) => {
-    gCtx.strokeStyle = 'black';
-    gCtx.fillStyle = entry.color;
-    gCtx.textAlign = entry.align;
-    gCtx.font = `${entry.size}px meme-font`;
-    gCtx.fillText(entry.txt.toUpperCase(), entry.pos.x, entry.pos.y);
-    gCtx.strokeText(entry.txt.toUpperCase(), entry.pos.x, entry.pos.y);
-  });
-}
-
 function moveText(value) {
   var meme = getMeme();
   meme = meme.lines[meme.selectedLineIdx];
@@ -82,26 +61,33 @@ function addLine() {
       color: 'white',
       pos: { x: pos.x / 2, y: pos.y / 2 },
     };
-  switchLines();
+  meme.selectedLineIdx++;
+  inputText();
+  drawText();
 }
 
 function clearCanvas() {
   gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
-
+/// *** TODO ALL THE BELOW *** ///
+/// TO FIND INDEX IN getRectPos SINCE ITS ALL UNDEFINED ///
 function switchLines() {
   var meme = getMeme();
   var counter = lineCounter(meme);
+  console.log('counter', counter);
   if (counter - meme.selectedLineIdx - 1 === 0) meme.selectedLineIdx = 0;
   else meme.selectedLineIdx++;
   inputText();
   drawText();
+  var rectPos = getRectPos(meme, meme.selectedLineIdx);
+  isTextClicked(rectPos);
 }
 
 function lineCounter(meme) {
   var counter = 0;
-  meme.lines.forEach((line) => {
+  meme.lines.forEach(function () {
     counter++;
+    console.log('for each', counter);
   });
   return counter;
 }
@@ -110,4 +96,58 @@ function setColor(value) {
   var meme = getMeme();
   meme.lines[meme.selectedLineIdx].color = value;
   drawText();
+}
+
+function isTextClicked(clickedPos) {
+  var memes = getMeme();
+  var rectPos = getRectPos(memes);
+  console.log('rectPos', rectPos);
+  var clickedIdx;
+  rectPos.forEach((pos) => {
+    if (
+      clickedPos.x >= pos.posXstart &&
+      // clickedPos.x <= pos.posXend &&
+      clickedPos.y >= pos.posYstart
+    )
+      clickedIdx = pos.idx;
+  });
+  if (clickedIdx) {
+    renderClickedText(
+      rectPos[clickedIdx].posXstart,
+      rectPos[clickedIdx].posXend,
+      rectPos[clickedIdx].posYstart,
+      rectPos[clickedIdx].posYend
+    );
+  }
+}
+
+function getRectPos(memes, idx) {
+  console.log(idx);
+  var ctx = getElCtx();
+  var rectPos = [];
+  var lmao = memes.lines.forEach((meme, memeIdx) => {
+    var txtSize = ctx.measureText(meme.txt).width;
+    console.log('meme idx', memeIdx);
+    var size = meme.size;
+    if (idx === memeIdx) {
+      console.log('hello if');
+      return {
+        posXstart: posX - txtSize / 2 - 30,
+        posYstart: posY - size,
+        posXend: txtSize + 60,
+        posYend: size + 10,
+      };
+    } else if (!idx) {
+      console.log('hello else');
+      var posX = meme.pos.x;
+      var posY = meme.pos.y;
+      var posXstart = posX - txtSize / 2 - 30;
+      var posYstart = posY - size;
+      var posXend = txtSize + 60;
+      var posYend = size + 10;
+      rectPos.push({ posXstart, posYstart, posXend, posYend, memeIdx });
+      return rectPos;
+    }
+  });
+  return lmao;
 }
