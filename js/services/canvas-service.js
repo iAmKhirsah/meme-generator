@@ -3,22 +3,22 @@ var gMeme;
 
 function moveText(value) {
   var meme = getMeme();
-  meme = meme.lines[meme.selectedLineIdx];
+  // meme = meme.lines[meme.selectedLineIdx];
   var increment = 10;
   switch (value) {
     case 'up':
-      meme.pos.y -= increment;
+      meme.lines[meme.selectedLineIdx].pos.y -= increment;
       break;
     case 'down':
-      meme.pos.y += increment;
+      meme.lines[meme.selectedLineIdx].pos.y += increment;
       break;
     case 'left':
-      meme.pos.x -= increment;
+      meme.lines[meme.selectedLineIdx].pos.x -= increment;
       break;
     case 'right':
-      meme.pos.x += increment;
+      meme.lines[meme.selectedLineIdx].pos.x += increment;
   }
-  drawMeme();
+  drawMeme(meme);
 }
 
 function fontSizeChange(value) {
@@ -34,7 +34,7 @@ function fontSizeChange(value) {
   if (meme.size < 5) {
     meme.size = 5;
   }
-  drawMeme();
+  drawMeme(meme);
 }
 function addLine() {
   var meme = getMeme();
@@ -70,7 +70,7 @@ function addLine() {
       font: 'Impact',
       pos: { x: pos.x / 2, y: pos.y / 2 },
     };
-  drawText();
+  drawText(meme);
   switchLines();
 }
 
@@ -78,8 +78,8 @@ function switchLines() {
   var meme = getMeme();
   if (meme.lines.length - 1 === meme.selectedLineIdx) meme.selectedLineIdx = 0;
   else meme.selectedLineIdx++;
+  drawText(meme);
   inputText();
-  drawText();
   // var rectPos = getRectPos(meme, meme.selectedLineIdx);
   // isTextClicked(rectPos);
 }
@@ -88,14 +88,14 @@ function deleteLine() {
   meme.lines.splice(meme.selectedLineIdx, 1);
   if (meme.lines.length > 0) {
     meme.selectedLineIdx = 0;
-    drawMeme();
+    drawMeme(meme);
   } else {
-    drawMeme();
+    drawMeme(meme);
   }
 }
 function currMeme(img) {
   var pos = getCanvasPos();
-  gMeme = {
+  var meme = {
     selectedImgId: img.id,
     selectedLineIdx: 0,
     lines: [
@@ -110,30 +110,41 @@ function currMeme(img) {
       },
     ],
   };
+  setMeme(meme);
+}
+function saveMeme() {
+  var savedMemes = [];
+  var memeImg = getElCanvas().toDataURL();
+  if (loadFromStorage('savedMemes')) savedMemes = loadFromStorage('savedMemes');
+  savedMemes.push(memeImg);
+  saveToStorage('savedMemes', savedMemes);
 }
 
 function setColor(value) {
   var meme = getMeme();
   meme.lines[meme.selectedLineIdx].color = value;
-  drawMeme();
+  drawMeme(meme);
 }
 function setStrokeColor(value) {
   var meme = getMeme();
   meme.lines[meme.selectedLineIdx].strokeColor = value;
-  drawMeme();
+  drawMeme(meme);
 }
 function setTextAlignment(value) {
   var meme = getMeme();
   meme.lines[meme.selectedLineIdx].align = value;
-  drawMeme();
+  drawMeme(meme);
 }
 function changeFont(value) {
   var meme = getMeme();
   meme.lines[meme.selectedLineIdx].font = value;
-  drawMeme();
+  drawMeme(meme);
+}
+function setMeme(meme) {
+  saveToStorage('memes', meme);
 }
 function getMeme() {
-  return gMeme;
+  return loadFromStorage('memes');
 }
 
 // A MONUMENT TO MY FAILURES //

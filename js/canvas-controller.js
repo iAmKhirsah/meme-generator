@@ -19,10 +19,11 @@ function createMeme(img) {
   inputText();
   ctx.drawImage(img, 0, 0, elCanvas.width, elCanvas.height);
 }
-function drawMeme() {
+function drawMeme(meme) {
   clearCanvas();
   drawMemeImg();
-  drawText();
+  drawText(meme);
+  setMeme(meme);
 }
 function drawMemeImg() {
   var ctx = getElCtx();
@@ -30,17 +31,18 @@ function drawMemeImg() {
   var img = getImg();
   ctx.drawImage(img, 0, 0, elCanvas.width, elCanvas.height);
 }
-function drawText() {
-  var meme = getMeme();
-  gCtx.lineWidth = 2;
+function drawText(meme) {
+  var ctx = getElCtx();
+  ctx.lineWidth = 2;
   meme.lines.forEach((entry) => {
-    gCtx.strokeStyle = entry.strokeColor;
-    gCtx.fillStyle = entry.color;
-    gCtx.textAlign = entry.align;
-    gCtx.font = `${entry.size}px ${entry.font}`;
-    gCtx.fillText(entry.txt.toUpperCase(), entry.pos.x, entry.pos.y);
-    gCtx.strokeText(entry.txt.toUpperCase(), entry.pos.x, entry.pos.y);
+    ctx.strokeStyle = entry.strokeColor;
+    ctx.fillStyle = entry.color;
+    ctx.textAlign = entry.align;
+    ctx.font = `${entry.size}px ${entry.font}`;
+    ctx.fillText(entry.txt.toUpperCase(), entry.pos.x, entry.pos.y);
+    ctx.strokeText(entry.txt.toUpperCase(), entry.pos.x, entry.pos.y);
   });
+  setMeme(meme);
 }
 function addMouseListeners() {
   var canvas = getElCanvas();
@@ -61,11 +63,12 @@ function addMouseListeners() {
 
 function aspectRatio() {
   var elContainer = document.querySelector('.canvas-container');
+  var meme = getMeme();
   var img = getImg();
   var elCanvas = getElCanvas();
   elCanvas.width = elContainer.offsetWidth - 5;
   elCanvas.height = (img.height * elCanvas.width) / img.width;
-  drawMeme();
+  drawMeme(meme);
 }
 function inputText() {
   var meme = getMeme();
@@ -83,7 +86,7 @@ function changeText(value) {
     addLine();
   }
   meme.lines[meme.selectedLineIdx].txt = value;
-  drawMeme();
+  drawMeme(meme);
 }
 // function onDown(ev) {
 //   const pos = getEvPos(ev);

@@ -157,6 +157,13 @@ h1 {
   cursor: pointer;
   transition: 0.3s;
 }
+.placeholder-image {
+  width: 100%;
+  grid-column: span 4;
+  grid-row: span 4;
+  cursor: pointer;
+  transition: 0.3s;
+}
 .grid-container img:hover {
   box-shadow: 0px 4px 3px 0px rgba(223, 8, 8, 0.74);
 }
@@ -180,6 +187,9 @@ input[type='text'] {
   height: 20px;
   margin-bottom: 6px;
 }
+input[type='file'] {
+  display: none;
+}
 
 /* FUNCTION GRID  */
 .function-container {
@@ -190,7 +200,7 @@ input[type='text'] {
     '. a-left select a-right .'
     'align-left . a-down . delete'
     'align-center align-right . font-size-down font-size-up'
-    'download download . share share';
+    'download download save share share';
   gap: 6px;
 }
 .function-container > * {
@@ -198,7 +208,14 @@ input[type='text'] {
   width: 50px;
   height: 50px;
 }
-
+.save {
+  grid-area: save;
+  width: 100%;
+}
+.save::before {
+  font-family: fa;
+  content: '\f0c7';
+}
 .share {
   grid-area: share;
   width: 100%;
@@ -338,6 +355,16 @@ input[type='text'] {
   /* justify-content: center; */
   height: 60%;
   width: 50%;
+}
+
+/* MEME PAGE */
+.meme-container {
+  padding: 20px;
+  grid-column: span 4;
+  grid-row: span 4;
+  cursor: pointer;
+  transition: 0.3s;
+  grid-template-columns: repeat(auto-fit, minmax(30%, auto));
 }
 /* HELPERS */
 

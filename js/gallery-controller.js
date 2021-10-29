@@ -7,10 +7,28 @@ function init() {
 
 function displayImgs() {
   var imgs = imagesForMemes();
-  var strHTML = '';
+  var strHTML = `  <label for="image" class="placeholder-image">
+  <img src="https://dummyimage.com/300x400/878787/fff.png&text=Your+image+here"/>
+</label>
+  <input
+  id="image"
+  type="file"
+  class="file-input"
+  name="image"
+  onchange="onImgInput(event)"
+/>`;
   imgs.forEach((img) => {
     strHTML += `<img src="${img.url}" id="${img.id}" onclick="createMeme(this)">`;
     document.querySelector('.grid-container').innerHTML = strHTML;
+  });
+}
+
+function displayMemes() {
+  var memes = loadFromStorage('savedMemes');
+  var strHTML = '';
+  memes.forEach((meme) => {
+    strHTML += `<img src="${meme}" onclick="createMeme(this)">`;
+    document.querySelector('.meme-container').innerHTML = strHTML;
   });
 }
 
@@ -23,6 +41,7 @@ function hidePages(isViable = '') {
     gallery.classList.add('hidden');
     memes.classList.add('hidden');
   } else if (isViable === 'memes') {
+    displayMemes();
     gallery.classList.add('hidden');
     generatorContainer.classList.add('hidden');
     memes.classList.remove('hidden');
