@@ -4,6 +4,7 @@ function init() {
   displayImgs();
   initCanvas();
 }
+
 function displayImgs() {
   var imgs = imagesForMemes();
   var strHTML = '';

@@ -1,10 +1,5 @@
 'use strict';
-
-function drawMeme() {
-  clearCanvas();
-  drawMemeImg();
-  drawText();
-}
+var gMeme;
 
 function moveText(value) {
   var meme = getMeme();
@@ -79,10 +74,6 @@ function addLine() {
   switchLines();
 }
 
-function clearCanvas() {
-  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
-}
-
 function switchLines() {
   var meme = getMeme();
   if (meme.lines.length - 1 === meme.selectedLineIdx) meme.selectedLineIdx = 0;
@@ -91,6 +82,34 @@ function switchLines() {
   drawText();
   // var rectPos = getRectPos(meme, meme.selectedLineIdx);
   // isTextClicked(rectPos);
+}
+function deleteLine() {
+  var meme = getMeme();
+  meme.lines.splice(meme.selectedLineIdx, 1);
+  if (meme.lines.length > 0) {
+    meme.selectedLineIdx = 0;
+    drawMeme();
+  } else {
+    drawMeme();
+  }
+}
+function currMeme(img) {
+  var pos = getCanvasPos();
+  gMeme = {
+    selectedImgId: img.id,
+    selectedLineIdx: 0,
+    lines: [
+      {
+        txt: '',
+        size: 40,
+        align: 'center',
+        color: 'white',
+        strokeColor: 'black',
+        font: 'Impact',
+        pos: { x: pos.x / 2, y: 60 },
+      },
+    ],
+  };
 }
 
 function setColor(value) {
@@ -108,20 +127,13 @@ function setTextAlignment(value) {
   meme.lines[meme.selectedLineIdx].align = value;
   drawMeme();
 }
-function deleteLine() {
-  var meme = getMeme();
-  meme.lines.splice(meme.selectedLineIdx, 1);
-  if (meme.lines.length > 0) {
-    meme.selectedLineIdx = 0;
-    drawMeme();
-  } else {
-    drawMeme();
-  }
-}
 function changeFont(value) {
   var meme = getMeme();
   meme.lines[meme.selectedLineIdx].font = value;
   drawMeme();
+}
+function getMeme() {
+  return gMeme;
 }
 
 // A MONUMENT TO MY FAILURES //

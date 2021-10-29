@@ -1,6 +1,5 @@
 'use strict';
 var gKeywords = { happy: 6, trump: 2, dog: 3, child: 5, hands: 5 };
-var gMeme;
 
 function imagesForMemes() {
   var imgs = [
@@ -35,56 +34,4 @@ function imagesForMemes() {
     { id: 125, url: './img/025.jpg', keywords: ['everywhere'] },
   ];
   return imgs;
-}
-
-function currMeme(img) {
-  var pos = getCanvasPos();
-  gMeme = {
-    selectedImgId: img.id,
-    selectedLineIdx: 0,
-    lines: [
-      {
-        txt: '',
-        size: 40,
-        align: 'center',
-        color: 'white',
-        strokeColor: 'black',
-        font: 'Impact',
-        pos: { x: pos.x / 2, y: 60 },
-      },
-    ],
-  };
-}
-
-function getMeme() {
-  return gMeme;
-}
-
-function shareMeme() {
-  var elCanvas = getElCanvas();
-  const imgDataUrl = elCanvas.toDataURL('image/jpeg');
-  function onSuccess(uploadedImgUrl) {
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}`
-    );
-  }
-  doUploadImg(imgDataUrl, onSuccess);
-}
-
-function doUploadImg(imgDataUrl, onSuccess) {
-  const formData = new FormData();
-  formData.append('img', imgDataUrl);
-
-  fetch('//ca-upload.com/here/upload.php', {
-    method: 'POST',
-    body: formData,
-  })
-    .then((res) => res.text())
-    .then((url) => {
-      console.log('Got back live url:', url);
-      onSuccess(url);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
 }
