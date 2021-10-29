@@ -40,115 +40,122 @@
       </div>
     </nav>
     <div class="grid-container grid"></div>
-    <div class="meme-generator flex hidden">
-      <div class="canvas-container flex">
-        <canvas id="my-canvas"></canvas>
-      </div>
-      <div>
-        <input
-          class="input"
-          type="text"
-          title="Text input"
-          placeholder="text here"
-          oninput="changeText(value)"
-        />
-        <div class="function-container grid">
-          <button class="color-picker-btn center-all">
-            <input
-              class="color-picker"
-              type="color"
-              title="Color Picker"
-              oninput="setColor(value)"
-            />
-          </button>
-          <button
-            class="add-line"
-            title="Add Line"
-            onclick="addLine()"
-          ></button>
-          <button
-            class="font-size-up"
-            title="Font Size Up"
-            onclick="fontSizeChange('+')"
-          ></button>
-          <button
-            class="font-size-down"
-            title="Font Size Down"
-            onclick="fontSizeChange('-')"
-          ></button>
-          <button
-            class="text-up"
-            title="Text Move Up"
-            onclick="moveText('up')"
-          ></button>
-          <button
-            class="text-down"
-            title="Text Move Down"
-            onclick="moveText('down')"
-          ></button>
-          <button
-            class="text-left"
-            title="Text Move Left"
-            onclick="moveText('left')"
-          ></button>
-          <button
-            class="text-right"
-            title="Text Move Right"
-            onclick="moveText('right')"
-          ></button>
-          <button
-            class="switch-line"
-            title="Switch Selected Line"
-            onclick="switchLines()"
-          ></button>
-          <button class="stroke-btn center-all">
-            <input
-              class="stroke"
-              title="Stroke Color"
-              type="color"
-              oninput="setStrokeColor(value)"
-            />
-          </button>
-          <button
-            class="text-align-left"
-            title="Text Align Left"
-            onclick="setTextAlignment('left')"
-          ></button>
-          <button
-            class="text-align-center"
-            title="Text Align Center"
-            onclick="setTextAlignment('center')"
-          ></button>
-          <button
-            class="text-align-right"
-            title="Text Align Right"
-            onclick="setTextAlignment('right')"
-          ></button>
-          <button
-            class="delete"
-            title="Delete Selected Line"
-            onclick="deleteLine()"
-          ></button>
-          <select
-            class="font-select"
-            title="Font Select"
-            id="font"
-            onclick="changeFont(this.value)"
-          >
-            <option value="Impact">Impact</option>
-            <option value="Courier New">Courier New</option>
-            <option value="Arial">Arial</option>
-            <option value="serif">Serif</option>
-            <option value="sans-serif">Sans Serif</option>
-          </select>
-          <button class="download-btn" title="Download Meme">
-            <a href="#" download="my-meme.jpg" onclick="downloadMeme(this)"></a>
+
+    <div class="generator-container">
+      <div class="meme-generator flex hidden">
+        <div class="canvas-container flex">
+          <canvas id="my-canvas"></canvas>
+        </div>
+        <div>
+          <input
+            class="input"
+            type="text"
+            title="Text input"
+            placeholder="text here"
+            oninput="changeText(value)"
+          />
+          <div class="function-container grid">
+            <button class="color-picker-btn center-all">
+              <input
+                class="color-picker"
+                type="color"
+                title="Color Picker"
+                oninput="setColor(value)"
+              />
+            </button>
             <button
-              class="share"
-              title="Share Meme"
-              onclick="shareMeme()"
+              class="add-line"
+              title="Add Line"
+              onclick="addLine()"
             ></button>
-          </button>
+            <button
+              class="font-size-up"
+              title="Font Size Up"
+              onclick="fontSizeChange('+')"
+            ></button>
+            <button
+              class="font-size-down"
+              title="Font Size Down"
+              onclick="fontSizeChange('-')"
+            ></button>
+            <button
+              class="text-up"
+              title="Text Move Up"
+              onclick="moveText('up')"
+            ></button>
+            <button
+              class="text-down"
+              title="Text Move Down"
+              onclick="moveText('down')"
+            ></button>
+            <button
+              class="text-left"
+              title="Text Move Left"
+              onclick="moveText('left')"
+            ></button>
+            <button
+              class="text-right"
+              title="Text Move Right"
+              onclick="moveText('right')"
+            ></button>
+            <button
+              class="switch-line"
+              title="Switch Selected Line"
+              onclick="switchLines()"
+            ></button>
+            <button class="stroke-btn center-all">
+              <input
+                class="stroke"
+                title="Stroke Color"
+                type="color"
+                oninput="setStrokeColor(value)"
+              />
+            </button>
+            <button
+              class="text-align-left"
+              title="Text Align Left"
+              onclick="setTextAlignment('left')"
+            ></button>
+            <button
+              class="text-align-center"
+              title="Text Align Center"
+              onclick="setTextAlignment('center')"
+            ></button>
+            <button
+              class="text-align-right"
+              title="Text Align Right"
+              onclick="setTextAlignment('right')"
+            ></button>
+            <button
+              class="delete"
+              title="Delete Selected Line"
+              onclick="deleteLine()"
+            ></button>
+            <select
+              class="font-select"
+              title="Font Select"
+              id="font"
+              onclick="changeFont(this.value)"
+            >
+              <option value="Impact">Impact</option>
+              <option value="Courier New">Courier New</option>
+              <option value="Arial">Arial</option>
+              <option value="serif">Serif</option>
+              <option value="sans-serif">Sans Serif</option>
+            </select>
+            <button class="download-btn" title="Download Meme">
+              <a
+                href="#"
+                download="my-meme.jpg"
+                onclick="downloadMeme(this)"
+              ></a>
+              <button
+                class="share"
+                title="Share Meme"
+                onclick="shareMeme()"
+              ></button>
+            </button>
+          </div>
         </div>
       </div>
     </div>
