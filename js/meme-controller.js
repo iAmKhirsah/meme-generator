@@ -14,20 +14,20 @@ function displayImgs() {
 }
 
 function hidePages(isViable = '') {
-  var generator = document.querySelector('.meme-generator');
+  var generatorContainer = document.querySelector('.generator-container');
   var gallery = document.querySelector('.grid-container');
   var memes = document.querySelector('.meme-container');
   if (!isViable) {
-    generator.classList.remove('hidden');
+    generatorContainer.classList.remove('hidden');
     gallery.classList.add('hidden');
     memes.classList.add('hidden');
   } else if (isViable === 'memes') {
     gallery.classList.add('hidden');
-    generator.classList.add('hidden');
+    generatorContainer.classList.add('hidden');
     memes.classList.remove('hidden');
   } else {
+    generatorContainer.classList.add('hidden');
     gallery.classList.remove('hidden');
-    generator.classList.add('hidden');
     memes.classList.add('hidden');
   }
 }
