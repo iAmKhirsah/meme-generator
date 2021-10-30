@@ -51,3 +51,13 @@ function hidePages(isViable = '') {
     memes.classList.add('hidden');
   }
 }
+
+function toggleMenu() {
+  document.body.classList.toggle('menu-open');
+  burgerMenu();
+}
+
+function burgerMenu() {
+  var navBtns = document.querySelector('.nav-btns');
+  navBtns.classList.toggle('open');
+}
