@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meme-gen</title>
-
+    <title>Noxus Document Forger</title>
+    <link rel="shortcut icon" href="./img/icon-noxus.png" type="image/x-icon">  
     <link rel="stylesheet" href="meme.css" />
   </head>
   <body onload="init()">
+    <div class="app-background"></div>
     <div class="main flex">
       <nav class="main-nav flex">
         <div class="tab-container">
@@ -47,22 +48,15 @@
             </div>
           </div>
         </div>
-        <button class="burger-btn" onclick="toggleMenu()">
+         <button class="burger-btn" onclick="toggleMenu()">
           <i class="fas fa-bars"></i>
-        </button>
+        </button> 
         <div class="main-screen" onclick="toggleMenu()"></div>
-        <div>
-          <!-- <ul class="burger-menu clean-list">
-            <li onclick="hidePages(this)">Gallery</li>
-            <li onclick="hidePages('memes')">My Memes</li>
-            <li>About</li>
-          </ul> -->
-        </div>
       </nav>
       <div class="center-all">
         <div class="grid-container main-size grid"></div>
       </div>
-      <div>
+      
       <div class="generator-container main-size hidden">
         <div class="meme-generator flex">
           <div class="canvas-container flex">
@@ -171,7 +165,7 @@
                 <option value="sans-serif">Sans Serif</option>
               </select>
               <button class="download-btn" title="Download Meme">
-                <a
+                <a class="download-ref"
                   href="#"
                   download="my-meme.jpg"
                   onclick="downloadMeme(this)"
@@ -190,7 +184,7 @@
       <div class="footer-container">
         <h2>Made With Love By @Ilya Shershniov</h2>
       </div>
-    </div>
+    
     <script
       src="https://kit.fontawesome.com/84b9566613.js"
       crossorigin="anonymous"

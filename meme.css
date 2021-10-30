@@ -15,8 +15,6 @@
   src: url(./font/font-awesome.otf);
 }
 
-/* BTN TESTING AREA */
-
 /* BASIC */
 body {
   margin: 0;
@@ -28,6 +26,14 @@ h1 {
 }
 
 /* MAIN */
+.app-background {
+  position: fixed;
+  inset: 0;
+  background-image: url(./img/leviathan_transparent_1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
 .main {
   flex-direction: column;
   min-height: 100vh;
@@ -169,7 +175,6 @@ body.menu-open .main-screen {
 /*GRID CONTAINER */
 .grid-container {
   flex: 1;
-  background-color: white;
   padding: 30px 50px;
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   grid-auto-rows: minmax(10px, 1fr);
@@ -196,9 +201,6 @@ body.menu-open .main-screen {
 /* GENERATOR  */
 .generator-container {
   flex: 1;
-  background-image: url(./img/leviathan_transparent_1.png);
-  background-repeat: no-repeat;
-  background-size: cover;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -273,6 +275,12 @@ input[type='file'] {
 .download-btn a::before {
   font-family: fa;
   content: '\f019';
+}
+.download-ref {
+  padding: 16px 40px;
+  height: 100%;
+  width: 100%; 
+  color: white;
 }
 
 .stroke-btn {
@@ -400,7 +408,6 @@ input[type='file'] {
 /* MEME PAGE */
 .meme-container {
   flex: 1;
-  background-color: white;
   padding: 30px 50px;
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   grid-auto-rows: minmax(10px, 1fr);
@@ -416,16 +423,17 @@ input[type='file'] {
 
 /* FOOTER */
 .footer-container {
-  height: 125px;
   background-image: url(./img/nav.jpg);
   background-repeat: no-repeat;
   background-position: 100% 80%;
   background-size: cover;
   border-top: 2px solid black;
+  margin: 0;
 }
 .footer-container h2 {
   color: white;
   text-align: center;
+  margin: 0;
 }
 /* HELPERS */
 .main-size {
@@ -488,6 +496,9 @@ input[type='file'] {
   .burger-btn {
     display: block;
   }
+  .btn-slice {
+    letter-spacing: normal;
+  }
   .open {
     position: fixed;
     right: 7%;
@@ -505,6 +516,13 @@ input[type='file'] {
   }
   .function-container {
     margin-bottom: 5px;
+  }
+  .meme-container {
+    padding: 0;
+    margin: 5px 0 5px 0;
+  }
+  .meme-container img {
+    width: 100%;
   }
   .footer-container {
     height: 100%;

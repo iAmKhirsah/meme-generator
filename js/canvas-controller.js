@@ -14,8 +14,8 @@ function createMeme(img) {
   var elCanvas = getElCanvas();
   hidePages();
   setImg(img);
-  aspectRatio();
   currMeme(img);
+  aspectRatio();
   inputText();
   ctx.drawImage(img, 0, 0, elCanvas.width, elCanvas.height);
 }
@@ -58,7 +58,7 @@ function addMouseListeners() {
   window.addEventListener('resize', () => {
     aspectRatio();
   });
-  canvas.addEventListener('mousedown', onDown);
+  // canvas.addEventListener('mousedown', onDown);
   // canvas.addEventListener('mouseup', onUp);
 }
 
