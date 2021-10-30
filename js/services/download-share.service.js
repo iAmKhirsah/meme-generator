@@ -1,11 +1,13 @@
 'use strict';
 
 function downloadMeme(elLink) {
+  drawMeme(getMeme(), true);
   var imgContent = gElCanvas.toDataURL('image/jpeg');
   elLink.href = imgContent;
 }
 
 function shareMeme() {
+  drawMeme(getMeme(), true)
   var elCanvas = getElCanvas();
   const imgDataUrl = elCanvas.toDataURL('image/jpeg');
   function onSuccess(uploadedImgUrl) {

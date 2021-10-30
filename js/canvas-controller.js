@@ -14,15 +14,16 @@ function createMeme(img) {
   var elCanvas = getElCanvas();
   hidePages();
   setImg(img);
-  currMeme(img);
   aspectRatio();
+  currMeme(img);
   inputText();
   ctx.drawImage(img, 0, 0, elCanvas.width, elCanvas.height);
 }
-function drawMeme(meme) {
+function drawMeme(meme, deSelect = false) {
   clearCanvas();
   drawMemeImg();
   drawText(meme);
+  renderSelectedLine(deSelect);
   setMeme(meme);
 }
 function drawMemeImg() {
@@ -38,11 +39,18 @@ function drawText(meme) {
     ctx.strokeStyle = entry.strokeColor;
     ctx.fillStyle = entry.color;
     ctx.textAlign = entry.align;
+    ctx.setLineDash([0, 0]);
     ctx.font = `${entry.size}px ${entry.font}`;
     ctx.fillText(entry.txt.toUpperCase(), entry.pos.x, entry.pos.y);
     ctx.strokeText(entry.txt.toUpperCase(), entry.pos.x, entry.pos.y);
   });
   setMeme(meme);
+}
+function renderSelectedLine(deSelect) {
+  var meme = getMeme();
+  if (meme.selectedLineIdx <= meme.lines.length) {
+    isTextClicked(meme.lines[meme.selectedLineIdx].pos, deSelect);
+  }
 }
 function addMouseListeners() {
   var canvas = getElCanvas();
@@ -50,7 +58,7 @@ function addMouseListeners() {
   window.addEventListener('resize', () => {
     aspectRatio();
   });
-  // canvas.addEventListener('mousedown', onDown);
+  canvas.addEventListener('mousedown', onDown);
   // canvas.addEventListener('mouseup', onUp);
 }
 
@@ -88,13 +96,13 @@ function changeText(value) {
   meme.lines[meme.selectedLineIdx].txt = value;
   drawMeme(meme);
 }
-// function onDown(ev) {
-//   const pos = getEvPos(ev);
-//   if (!isTextClicked(pos)) return;
-//   setCircleDrag(true);
-//   gStartPos = pos;
-//   document.body.style.cursor = 'grabbing';
-// }
+function onDown(ev) {
+  const pos = getEvPos(ev);
+  if (!isTextClicked(pos)) return;
+  // setCircleDrag(true);
+  // gStartPos = pos;
+  document.body.style.cursor = 'grabbing';
+}
 function getCanvas() {
   gElCanvas = document.querySelector('#my-canvas');
   gCtx = gElCanvas.getContext('2d');
@@ -114,6 +122,7 @@ function getImg() {
 }
 
 function getEvPos(ev) {
+  console.log(ev);
   var pos = {
     x: ev.offsetX,
     y: ev.offsetY,
@@ -137,6 +146,7 @@ function getCanvasPos() {
 function renderClickedText(posXstart, posXend, posYstart, posYend) {
   var ctx = getElCtx();
   ctx.strokeStyle = 'black';
+  ctx.setLineDash([5, 5]);
   ctx.strokeRect(posXstart, posYstart, posXend, posYend);
 }
 

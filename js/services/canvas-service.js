@@ -23,15 +23,15 @@ function moveText(value) {
 
 function fontSizeChange(value) {
   var meme = getMeme();
-  var increment = 5;
+  var increment = 10;
   if (value === '+') {
     meme.lines[meme.selectedLineIdx].size += increment;
   }
   if (value === '-') {
     meme.lines[meme.selectedLineIdx].size -= increment;
   }
-  if (meme.size < 5) {
-    meme.lines[meme.selectedLineIdx].size = 5;
+  if (meme.lines[meme.selectedLineIdx].size <= 10) {
+    meme.lines[meme.selectedLineIdx].size = 10;
   }
   drawMeme(meme);
 }
@@ -69,6 +69,7 @@ function addLine() {
       font: 'Impact',
       pos: { x: pos.x / 2, y: pos.y / 2 },
     };
+  console.log(pos);
   drawText(meme);
   switchLines();
 }
@@ -77,10 +78,8 @@ function switchLines() {
   var meme = getMeme();
   if (meme.lines.length - 1 === meme.selectedLineIdx) meme.selectedLineIdx = 0;
   else meme.selectedLineIdx++;
-  drawText(meme);
+  drawMeme(meme);
   inputText();
-  // var rectPos = getRectPos(meme, meme.selectedLineIdx);
-  // isTextClicked(rectPos);
 }
 function deleteLine() {
   var meme = getMeme();
@@ -112,6 +111,7 @@ function currMeme(img) {
   setMeme(meme);
 }
 function saveMeme() {
+  drawMeme(getMeme(), true);
   var savedMemes = [];
   var memeImg = getElCanvas().toDataURL();
   if (loadFromStorage('savedMemes')) savedMemes = loadFromStorage('savedMemes');
@@ -146,53 +146,80 @@ function getMeme() {
   return loadFromStorage('memes');
 }
 
-// A MONUMENT TO MY FAILURES //
+function isTextClicked(clickedPos, deSelect = false) {
+  var memes = getMeme();
+  var rectPos = getRectPos(memes);
+  var clickedIdx;
+  rectPos.forEach((pos) => {
+    if (
+      clickedPos.x >= pos.posXstart &&
+      clickedPos.x <= pos.posXend &&
+      clickedPos.y >= pos.posYstart &&
+      clickedPos.y <= pos.posYend
+    )
+      clickedIdx = pos.memeIdx;
+  });
+  if (!deSelect) {
+    if (clickedIdx > -1) {
+      renderClickedText(
+        rectPos[clickedIdx].posX,
+        rectPos[clickedIdx].txtSize,
+        rectPos[clickedIdx].posY,
+        rectPos[clickedIdx].size
+      );
+    }
+  }
+}
 
-// function isTextClicked(clickedPos) {
-//   var memes = getMeme();
-//   var rectPos = getRectPos(memes);
-//   var clickedIdx;
-//   rectPos.forEach((pos) => {
-//     if (
-//       clickedPos.x >= pos.posXstart &&
-//       // clickedPos.x <= pos.posXend &&
-//       clickedPos.y >= pos.posYstart
-//     )
-//       clickedIdx = pos.idx;
-//   });
-//   if (clickedIdx) {
-//     renderClickedText(
-//       rectPos[clickedIdx].posXstart,
-//       rectPos[clickedIdx].posXend,
-//       rectPos[clickedIdx].posYstart,
-//       rectPos[clickedIdx].posYend
-//     );
-//   }
-// }
-
-// function getRectPos(memes, idx) {
-//   var ctx = getElCtx();
-//   var rectPos = [];
-//   var lmao = memes.lines.forEach((meme, memeIdx) => {
-//     var txtSize = ctx.measureText(meme.txt).width;
-//     var size = meme.size;
-//     if (idx === memeIdx) {
-//       return {
-//         posXstart: posX - txtSize / 2 - 30,
-//         posYstart: posY - size,
-//         posXend: txtSize + 60,
-//         posYend: size + 10,
-//       };
-//     } else if (!idx) {
-//       var posX = meme.pos.x;
-//       var posY = meme.pos.y;
-//       var posXstart = posX - txtSize / 2 - 30;
-//       var posYstart = posY - size;
-//       var posXend = txtSize + 60;
-//       var posYend = size + 10;
-//       rectPos.push({ posXstart, posYstart, posXend, posYend, memeIdx });
-//       return rectPos;
-//     }
-//   });
-//   return lmao;
-// }
+function getRectPos(memes, idx = '') {
+  var ctx = getElCtx();
+  var rectPos = [];
+  memes.lines.forEach((meme, memeIdx) => {
+    var txtSize = ctx.measureText(meme.txt).width;
+    var size = meme.size;
+    var posX = meme.pos.x;
+    var posY = meme.pos.y;
+    if (idx === memeIdx) {
+      var posXstart = posX - txtSize / 2 - 30;
+      var posYstart = posY - size * 2;
+      var posXend = posX + txtSize / 6 + 20;
+      var posYend = posY + size / 2;
+      posX = posX - txtSize / 2 - 15;
+      posY = posY - size - 5;
+      txtSize += 30;
+      size += 15;
+      rectPos.push({
+        posXstart,
+        posYstart,
+        posXend,
+        posYend,
+        memeIdx,
+        size,
+        txtSize,
+        posX,
+        posY,
+      });
+    } else if (!idx) {
+      var posXstart = posX - txtSize / 2 - 30;
+      var posYstart = posY - size * 2;
+      var posXend = posX + txtSize / 6 + 20;
+      var posYend = posY + size / 2;
+      posX = posX - txtSize / 2 - 15;
+      posY = posY - size - 5;
+      txtSize += 30;
+      size += 15;
+      rectPos.push({
+        posXstart,
+        posYstart,
+        posXend,
+        posYend,
+        memeIdx,
+        size,
+        txtSize,
+        posX,
+        posY,
+      });
+    }
+  });
+  return rectPos;
+}
