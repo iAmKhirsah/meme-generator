@@ -24,15 +24,14 @@ function moveText(value) {
 function fontSizeChange(value) {
   var meme = getMeme();
   var increment = 5;
-  meme = meme.lines[meme.selectedLineIdx];
   if (value === '+') {
-    meme.size += increment;
+    meme.lines[meme.selectedLineIdx].size += increment;
   }
   if (value === '-') {
-    meme.size -= increment;
+    meme.lines[meme.selectedLineIdx].size -= increment;
   }
   if (meme.size < 5) {
-    meme.size = 5;
+    meme.lines[meme.selectedLineIdx].size = 5;
   }
   drawMeme(meme);
 }

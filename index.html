@@ -10,37 +10,44 @@
   </head>
   <body onload="init()">
     <nav class="main-nav flex">
-      <div class="btn-slice">
-        <div class="logo top"><span>Noxus Document Forger™</span></div>
-        <div class="logo bottom"><span>Noxus Document Forger­™</span></div>
+      <div class="tab-container">
+        <div class="btn-slice" onclick="hidePages(this)">
+          <div class="logo top"><span>Noxus Document Forger™</span></div>
+          <div class="logo bottom"><span>Noxus Document Forger­™</span></div>
+        </div>
       </div>
       <div class="nav-btns flex">
-        <div class="btn-slice" onclick="hidePages(this)">
-          <div class="logo top">
-            <span>Gallery</span>
-          </div>
-          <div class="logo bottom">
-            <span>Gallery</span>
-          </div>
-        </div>
-        <span class="divider"></span>
-        <div class="btn-slice" onclick="hidePages('memes')">
-          <div class="logo top">
-            <span>My Memes</span>
-          </div>
-          <div class="logo bottom">
-            <span>My Memes</span>
+        <div class="tab-container">
+          <div class="btn-slice" onclick="hidePages(this)">
+            <div class="logo top">
+              <span>Gallery</span>
+            </div>
+            <div class="logo bottom">
+              <span>Gallery</span>
+            </div>
           </div>
         </div>
         <span class="divider"></span>
-        <div class="btn-slice">
-          <div class="logo top"><span>About</span></div>
-          <div class="logo bottom"><span>About</span></div>
+        <div class="tab-container">
+          <div class="btn-slice" onclick="hidePages('memes')">
+            <div class="logo top">
+              <span>My Memes</span>
+            </div>
+            <div class="logo bottom">
+              <span>My Memes</span>
+            </div>
+          </div>
+        </div>
+        <span class="divider"></span>
+        <div class="tab-container">
+          <div class="btn-slice">
+            <div class="logo top"><span>About</span></div>
+            <div class="logo bottom"><span>About</span></div>
+          </div>
         </div>
       </div>
     </nav>
-    <div class="grid-container grid">
-    </div>
+    <div class="grid-container grid"></div>
     <div class="generator-container hidden">
       <div class="meme-generator flex">
         <div class="canvas-container flex">
@@ -105,7 +112,7 @@
             ></button>
             <button class="stroke-btn center-all">
               <input
-                class="stroke"
+                class="stroke btn"
                 title="Stroke Color"
                 type="color"
                 oninput="setStrokeColor(value)"
@@ -165,11 +172,15 @@
       </div>
     </div>
     <div class="meme-container grid"></div>
+    <footer class="footer-container">
+      <h2>Made With Love By @Ilya Shershniov</h2>
+    </footer>
     <script
       src="https://kit.fontawesome.com/84b9566613.js"
       crossorigin="anonymous"
     ></script>
     <script src="./js/services/storage-service.js"></script>
+    <script src="./js/services/utils.js"></script>
     <script src="./js/services/download-share.service.js"></script>
     <script src="./js/services/canvas-service.js"></script>
     <script src="./js/services/gallery-service.js"></script>

@@ -145,3 +145,19 @@ function clearCanvas() {
   var ctx = getElCtx();
   ctx.clearRect(0, 0, elCanvas.width, elCanvas.height);
 }
+
+function onImgInput(ev) {
+  loadImageFromInput(ev, createMeme);
+}
+
+function loadImageFromInput(ev, onImageReady) {
+  var reader = new FileReader();
+
+  reader.onload = function (event) {
+    var img = new Image();
+    img.onload = onImageReady.bind(null, img);
+    img.src = event.target.result;
+    gImg = img;
+  };
+  reader.readAsDataURL(ev.target.files[0]);
+}
