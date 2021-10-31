@@ -36,6 +36,7 @@ function fontSizeChange(value) {
 }
 function addLine() {
   var meme = getMeme();
+  console.log(meme);
   var pos = getCanvasPos();
   if (meme.lines.length === 0) {
     meme.lines[meme.lines.length] = {
@@ -179,7 +180,7 @@ function isTextClicked(clickedPos, deSelect = false) {
   if (!deSelect) {
     if (clickedIdx > -1) {
       memes.selectedLineIdx = clickedIdx;
-      setMeme(memes)
+      setMeme(memes);
       renderClickedText(
         rectPos[clickedIdx].posX,
         rectPos[clickedIdx].txtSize,

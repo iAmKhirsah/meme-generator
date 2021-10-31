@@ -5,8 +5,10 @@ function init() {
   initCanvas();
 }
 
-function displayImgs() {
-  var imgs = imagesForMemes();
+function displayImgs(imgs) {
+  if (!imgs) {
+    var imgs = imagesForMemes();
+  } 
   var strHTML = `  <label for="image" class="placeholder-image">
   <img src="https://dummyimage.com/300x300/8f3340/fff.png&text=Your+image+here"/>
 </label>

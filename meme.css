@@ -171,7 +171,22 @@ body.menu-open .main-screen {
   background-color: rgb(174 27 55 / 81%);
   border: 0;
 }
-
+/* SEARCH */
+.search-container {
+  /* justify-content: center; */
+  justify-content: flex-start;
+  padding-left: 25px;
+  flex: 1
+}
+.search-container span {
+  padding: 10px;
+  color: white;
+  margin-top: 10px;
+  margin-inline-start: 5px;
+  border-radius: 5px;
+  background-color: #8f3340;
+  cursor: pointer;
+}
 /*GRID CONTAINER */
 .grid-container {
   flex: 1;
@@ -246,7 +261,7 @@ input[type='file'] {
   background-color: rgb(174 27 55 / 81%);
   color: white;
   border-radius: 15px;
-  border: 1px solid red;
+  border: 2px solid #600505ed;
 }
 .function-container > *:hover {
   background-color: #342d3a;
@@ -434,6 +449,8 @@ input[type='file'] {
   color: white;
   text-align: center;
   margin: 0;
+  font-weight: 400;
+  padding: 10px;
 }
 /* HELPERS */
 .main-size {

@@ -44,3 +44,10 @@ function imagesForMemes() {
   return imgs;
 }
 
+function searchKeyword(keyword) {
+  var imgs = imagesForMemes();
+  var filteredImgs = imgs.filter((img) => {
+    return img.keywords.includes(keyword.innerText);
+  });
+  displayImgs(filteredImgs);
+}

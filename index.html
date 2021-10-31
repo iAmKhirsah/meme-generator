@@ -13,14 +13,14 @@
     <div class="main flex">
       <nav class="main-nav flex">
         <div class="tab-container">
-          <div class="btn-slice" onclick="hidePages(this)">
+          <div class="btn-slice" onclick="hidePages(this);displayImgs()">
             <div class="logo top"><span>Noxus Document Forger™</span></div>
             <div class="logo bottom"><span>Noxus Document Forger­™</span></div>
           </div>
         </div>
         <div class="nav-btns flex">
           <div class="tab-container">
-            <div class="btn-slice" onclick="hidePages(this)">
+            <div class="btn-slice" onclick="hidePages(this);displayImgs()">
               <div class="logo top">
                 <span>Gallery</span>
               </div>
@@ -53,6 +53,13 @@
         </button> 
         <div class="main-screen" onclick="toggleMenu()"></div>
       </nav>
+      <div class="search-container main-size flex">
+        <span class="hello" onclick="searchKeyword(this)">happy</span>
+        <span onclick="searchKeyword(this)">trump</span>
+        <span onclick="searchKeyword(this)">dog</span>
+        <span onclick="searchKeyword(this)">child</span>
+        <span onclick="searchKeyword(this)">hands</span>
+      </div>
       <div class="center-all">
         <div class="grid-container main-size grid"></div>
       </div>
