@@ -45,9 +45,11 @@ function imagesForMemes() {
 }
 
 function searchKeyword(keyword) {
+  var key = keyword.innerText;
+  if (!key) key = keyword;
   var imgs = imagesForMemes();
   var filteredImgs = imgs.filter((img) => {
-    return img.keywords.includes(keyword.innerText);
+    return img.keywords.includes(key);
   });
   displayImgs(filteredImgs);
 }

@@ -37,17 +37,21 @@ function displayMemes() {
 function hidePages(isViable = '') {
   var generatorContainer = document.querySelector('.generator-container');
   var gallery = document.querySelector('.grid-container');
+  var search = document.querySelector('.search-container')
   var memes = document.querySelector('.meme-container');
   if (!isViable) {
     generatorContainer.classList.remove('hidden');
+    search.classList.add('hidden')
     gallery.classList.add('hidden');
     memes.classList.add('hidden');
   } else if (isViable === 'memes') {
     displayMemes();
+    search.classList.add('hidden')
     gallery.classList.add('hidden');
     generatorContainer.classList.add('hidden');
     memes.classList.remove('hidden');
   } else {
+    search.classList.remove('hidden')
     generatorContainer.classList.add('hidden');
     gallery.classList.remove('hidden');
     memes.classList.add('hidden');

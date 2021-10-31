@@ -54,11 +54,17 @@
         <div class="main-screen" onclick="toggleMenu()"></div>
       </nav>
       <div class="search-container main-size flex">
-        <span class="hello" onclick="searchKeyword(this)">happy</span>
+       
+        <input class="search-text" type="text" placeholder="Search.." onchange="searchKeyword(this.value)">
+     
+      <div class="keywords-container">
+        <label for="span">Popular searches:</label>
+        <span onclick="searchKeyword(this)">happy</span>
         <span onclick="searchKeyword(this)">trump</span>
         <span onclick="searchKeyword(this)">dog</span>
         <span onclick="searchKeyword(this)">child</span>
         <span onclick="searchKeyword(this)">hands</span>
+      </div>
       </div>
       <div class="center-all">
         <div class="grid-container main-size grid"></div>
@@ -71,7 +77,7 @@
           </div>
           <div>
             <input
-              class="input"
+              class="function-text"
               type="text"
               title="Text input"
               placeholder="text here"
