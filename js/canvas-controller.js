@@ -7,7 +7,7 @@ const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 function initCanvas() {
   getCanvas();
   addMouseListeners();
-  // addTouchListeners();
+  addTouchListeners();
 }
 function createMeme(img) {
   var ctx = getElCtx();
@@ -54,20 +54,20 @@ function renderSelectedLine(deSelect) {
 }
 function addMouseListeners() {
   var canvas = getElCanvas();
-  // canvas.addEventListener('mousemove', onMove);
   window.addEventListener('resize', () => {
     aspectRatio();
   });
-  // canvas.addEventListener('mousedown', onDown);
-  // canvas.addEventListener('mouseup', onUp);
+  canvas.addEventListener('mousedown', onDown);
+  canvas.addEventListener('mousemove', onMove);
+  canvas.addEventListener('mouseup', onUp);
 }
 
-// function addTouchListeners() {
-//   var canvas = getElCanvas();
-//   canvas.addEventListener('touchmove', onMove);
-//   canvas.addEventListener('touchstart', onDown);
-//   canvas.addEventListener('touchend', onUp);
-// }
+function addTouchListeners() {
+  var canvas = getElCanvas();
+  canvas.addEventListener('touchmove', onMove);
+  canvas.addEventListener('touchstart', onDown);
+  canvas.addEventListener('touchend', onUp);
+}
 
 function aspectRatio() {
   var elContainer = document.querySelector('.canvas-container');
@@ -98,10 +98,23 @@ function changeText(value) {
 }
 function onDown(ev) {
   const pos = getEvPos(ev);
-  if (!isTextClicked(pos)) return;
-  // setCircleDrag(true);
-  // gStartPos = pos;
-  document.body.style.cursor = 'grabbing';
+  if (isTextClicked(pos)) {
+    isDrag(true);
+  }
+}
+function onMove(ev) {
+  var meme = getMeme();
+  if (meme.lines[meme.selectedLineIdx].isDrag) {
+    const pos = getEvPos(ev);
+    const dx = pos.x - meme.lines[meme.selectedLineIdx].pos.x;
+    const dy = pos.y - meme.lines[meme.selectedLineIdx].pos.y;
+    dragText(dx, dy);
+    var newMeme = getMeme();
+    drawMeme(newMeme);
+  }
+}
+function onUp() {
+  isDrag(false);
 }
 function getCanvas() {
   gElCanvas = document.querySelector('#my-canvas');
@@ -122,7 +135,6 @@ function getImg() {
 }
 
 function getEvPos(ev) {
-  console.log(ev);
   var pos = {
     x: ev.offsetX,
     y: ev.offsetY,

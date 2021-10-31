@@ -3,7 +3,6 @@ var gMeme;
 
 function moveText(value) {
   var meme = getMeme();
-  // meme = meme.lines[meme.selectedLineIdx];
   var increment = 10;
   switch (value) {
     case 'up':
@@ -47,6 +46,7 @@ function addLine() {
       strokeColor: 'black',
       font: 'Impact',
       pos: { x: pos.x / 2, y: pos.y + 60 },
+      isDrag: false,
     };
   }
   if (meme.lines.length === 1)
@@ -58,6 +58,7 @@ function addLine() {
       strokeColor: 'black',
       font: 'Impact',
       pos: { x: pos.x / 2, y: pos.y - 60 },
+      isDrag: false,
     };
   else
     meme.lines[meme.lines.length] = {
@@ -68,6 +69,7 @@ function addLine() {
       strokeColor: 'black',
       font: 'Impact',
       pos: { x: pos.x / 2, y: pos.y / 2 },
+      isDrag: false,
     };
   console.log(pos);
   drawText(meme);
@@ -91,6 +93,7 @@ function deleteLine() {
     drawMeme(meme);
   }
 }
+
 function currMeme(img) {
   var pos = getCanvasPos();
   var meme = {
@@ -105,6 +108,7 @@ function currMeme(img) {
         strokeColor: 'black',
         font: 'Impact',
         pos: { x: pos.x / 2, y: 60 },
+        isDrag: false,
       },
     ],
   };
@@ -146,10 +150,23 @@ function getMeme() {
   return loadFromStorage('memes');
 }
 
+function isDrag(drag) {
+  var meme = getMeme();
+  meme.lines[meme.selectedLineIdx].isDrag = drag;
+  setMeme(meme);
+}
+function dragText(dx, dy) {
+  var meme = getMeme();
+  meme.lines[meme.selectedLineIdx].pos.x += dx;
+  meme.lines[meme.selectedLineIdx].pos.y += dy;
+  setMeme(meme);
+}
+
 function isTextClicked(clickedPos, deSelect = false) {
   var memes = getMeme();
   var rectPos = getRectPos(memes);
   var clickedIdx;
+  var isClicked = false;
   rectPos.forEach((pos) => {
     if (
       clickedPos.x >= pos.posXstart &&
@@ -161,16 +178,19 @@ function isTextClicked(clickedPos, deSelect = false) {
   });
   if (!deSelect) {
     if (clickedIdx > -1) {
+      memes.selectedLineIdx = clickedIdx;
+      setMeme(memes)
       renderClickedText(
         rectPos[clickedIdx].posX,
         rectPos[clickedIdx].txtSize,
         rectPos[clickedIdx].posY,
         rectPos[clickedIdx].size
       );
+      isClicked = true;
     }
   }
+  return isClicked;
 }
-
 function getRectPos(memes, idx = '') {
   var ctx = getElCtx();
   var rectPos = [];
