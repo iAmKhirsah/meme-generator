@@ -183,8 +183,14 @@ body.menu-open .main-screen {
   cursor: pointer;
 }
 .keywords-container {
-  margin-top: 30px;
+  text-align: center;
+  margin-top: 20px;
 }
+
+.keywords-label {
+  margin-bottom: 10px;
+}
+
 .search-container span:hover {
   color: #8f3340;
 }
